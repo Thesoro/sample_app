@@ -1,3 +1,11 @@
+    <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+   </script>
 <header class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
@@ -7,14 +15,14 @@
 					<li><%= link_to "Home", 	root_path %></li>
 					<li><%= link_to "Help", 	help_path %></li>
 					<% if signed_in? %>
-						<li><%= link_to "Users", '#' %></li>
+						<li><%= link_to "Users", 'users_path' %></li>
 						<li id="fat-menu" class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								Account <b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
 								<li><%= link_to "Profile", current_user %></li>
-								<li><%= link_to "Setttings", '#' %></li>
+								<li><%= link_to "Settings", edit_user_path(current_user) %></li>
 								<li class="divider"></li>
 								<li>
 									<%=link_to "Sign out", signout_path, method: "delete" %>
@@ -29,3 +37,4 @@
 		</div>
 	</div>
 </header>
+
