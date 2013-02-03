@@ -28,11 +28,28 @@ describe "StaticPages" do
         visit root_path
       end
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
-          page.should have_selector("li##{item.id}", text: item.content)
+      describe "should render the feed" do
+        it "should render each item" do
+          user.feed.each do |item|
+            page.should have_selector("li##{item.id}", text: item.content)
+          end
+        end
+
+        it "should paginate the feed" do
+          30.times do
+            page.should have_content('delete')
+          end
+          page.should_not have_content('delete')
         end
       end
+
+      it "should show the number of posts" do
+        page.should have_content("2 microposts")
+        FactoryGirl.create(:micropost, user: user, content: "Baloney")
+        visit root_path
+        page.should have_content("3 microposts")
+      end
+
     end
   end
 

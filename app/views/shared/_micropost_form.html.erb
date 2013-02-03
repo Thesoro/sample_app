@@ -1,7 +1,9 @@
+<script type="text/javascript" src="char_counter.js"></script>
 <%= form_for(@micropost) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
-		<%= f.text_area :content, placeholder: "what stuff you gonna put on internet today" %>
+		you got this many characters left: <span id="char_count"></span>
+		<%= f.text_area :content, placeholder: "what stuff you gonna put on internet today", :id => 'textbox', :onFocus => "countChars('textbox', 'char_count',140)", :onKeyDown => "countChars('textbox', 'char_count',140)", :onKeyUp => "countChars('textbox', 'char_count',140)" %>
 	</div>
 	<%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

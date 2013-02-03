@@ -1,0 +1,5 @@
+	<% if current_user?(micropost.user) %>
+		<%= link_to "delete", micropost, method: :delete,
+										confirm: "if you do this nobody gonna read it ever again",
+										title: micropost.content %>
+	<% end %>
