@@ -6,6 +6,6 @@
 	<span class="content"><%= wrap(feed_item.content) %></span>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-	</span>
+	</span> - 
 	<%= render 'shared/delete_link.html.erb', micropost: feed_item %>
 </li>
